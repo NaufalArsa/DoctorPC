@@ -234,3 +234,10 @@ DELIMITER ;
 -- CALL EditPersediaan(1, 'Supply Baru', 20, 15);
 -- Edit mekanik berdasarkan ID_MECHANIC
 -- CALL EditMekanik(1, 'Mekanik Baru', '987-654-3210');
+
+DELIMITER //
+CREATE PROCEDURE SERVICEIT.LihatService()
+BEGIN
+    SELECT * FROM SERVICEIT.SERVICE;
+END //
+DELIMITER ;
