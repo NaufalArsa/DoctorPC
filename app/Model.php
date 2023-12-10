@@ -28,7 +28,7 @@ class Model {
     }
     public function showrequest(){
         require "../database/connection.php";
-        $query = mysqli_query($connection, "SELECT * FROM service");
+        $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
         // Fetch data and store it in $this->hasil
         while ($row = mysqli_fetch_assoc($query)) {
             $this->hasil[] = $row;
