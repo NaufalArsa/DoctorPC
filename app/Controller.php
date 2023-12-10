@@ -17,6 +17,10 @@ class Controller {
         header("location: ../resources/dashboard.php");
     }
 
+    public function showrequest(){
+        $dataReq = $this->model->showrequest();
+        include("../resources/views/service-request.php");
+    }
 }
 
 ?>
