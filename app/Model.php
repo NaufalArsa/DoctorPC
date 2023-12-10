@@ -28,9 +28,9 @@ class Model {
     }
     public function showrequest(){
         require "../database/connection.php";
-        $sql = "CALL LihatService()";
+        $query = mysqli_query($connection, "SELECT * FROM service");
         // Fetch data and store it in $this->hasil
-        while ($row = mysqli_fetch_assoc($sql)) {
+        while ($row = mysqli_fetch_assoc($query)) {
             $this->hasil[] = $row;
         }
 
