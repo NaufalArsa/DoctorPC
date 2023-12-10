@@ -26,7 +26,16 @@ class Model {
         require "../database/connection.php";
         $query;
     }
+    public function showrequest(){
+        require "../database/connection.php";
+        $sql = "CALL LihatService()";
+        // Fetch data and store it in $this->hasil
+        while ($row = mysqli_fetch_assoc($sql)) {
+            $this->hasil[] = $row;
+        }
 
+        return $this->hasil;
+    }
     
 }
 
