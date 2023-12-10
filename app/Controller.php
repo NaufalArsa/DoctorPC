@@ -21,6 +21,13 @@ class Controller {
         $dataReq = $this->model->showrequest();
         include("../resources/views/service-request.php");
     }
+
+    public function getDataSupply($name) {
+        $data = $this->model->getDataSupply($name);
+        include("../resources/views/supply-list.php");
+    }
+
+
 }
 
 ?>

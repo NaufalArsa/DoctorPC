@@ -16,4 +16,13 @@ $controller->authenticationLogin($username, $password);
 
 }
 
+if(isset($_GET['show'])) {
+    $name = $_GET['supplyName'];
+    
+    session_start();
+    $session['supplyName'] = $name;
+
+    $controller->getDataSupply($name);
+}
+
 ?>
