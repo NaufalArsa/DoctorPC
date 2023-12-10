@@ -1,7 +1,3 @@
-<?php
-session_start();
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +26,25 @@ session_start();
                 </tr>
             </thead>
             <tbody>
-
+            <?php
+                // Check if $dataReq is set and not empty before using foreach
+                if (!empty($dataReq)) {
+                    // Loop through each row of data and display it in the table
+                    foreach ($dataReq as $row) {
+                        echo "<tr>";
+                        echo "<td>{$row['ID_SERVICE']}</td>";
+                        echo "<td>{$row['NAMA_PELANGGAN']}</td>";
+                        echo "<td>{$row['KONTAK_PELANGGAN']}</td>";
+                        echo "<td>{$row['MERK_DEVICE']}</td>";
+                        echo "<td>{$row['STATUS_SERVICE']}</td>";
+                        echo "<td>{$row['DESKRIPSI']}</td>";
+                        echo "<td>{$row['ID_MECHANIC']}</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No data available</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
