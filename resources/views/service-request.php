@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +30,6 @@
             <tbody>
             <?php
                 // Check if $dataReq is set and not empty before using foreach
-                if (!empty($dataReq)) {
                     // Loop through each row of data and display it in the table
                     foreach ($dataReq as $row) {
                         echo "<tr>";
@@ -41,9 +42,6 @@
                         echo "<td>{$row['ID_MECHANIC']}</td>";
                         echo "</tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='7'>No data available</td></tr>";
-                }
                 ?>
             </tbody>
         </table>
