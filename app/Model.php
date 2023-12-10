@@ -22,10 +22,6 @@ class Model {
         return $_SESSION['login'];
     }
 
-    public function showSupply() {
-        require "../database/connection.php";
-        $query;
-    }
     public function showrequest(){
         require "../database/connection.php";
         $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
@@ -37,6 +33,16 @@ class Model {
         return $this->hasil;
     }
     
+    public function getDataSupply($name) {
+        require "../database/connection.php";
+        $query = mysqli_query($connection, "SELECT * FROM supply WHERE nama_supply = '$name'");
+
+        while($row = $query->fetch_assoc()) {
+            $hasil[] = $row;
+        }
+
+        return $this->hasil;
+    }
 }
 
 
