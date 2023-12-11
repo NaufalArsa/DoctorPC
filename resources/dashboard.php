@@ -299,7 +299,7 @@ if($_SESSION['login'] = false) {
           </div>
         </figcaption>
       </figure>
-      <a href="#" class="mt-10  flex items-center justify-center inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Send Feedback</a>
+      <a href="views/review-users.php" class="mt-10 flex items-center justify-center inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Send Feedback</a>
     </div>
   </section>
   <!-- ... -->

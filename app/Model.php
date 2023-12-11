@@ -36,6 +36,20 @@ class Model {
 
         return $this->hasil;
     }
+
+    // FITUR REVIEW [ALAM]
+    public function addReview($userName, $reviewText) {
+        require __DIR__ . '/../database/connection.php';
+        $stmt = $connection->prepare("INSERT INTO reviews (user_name, review_text) VALUES (?, ?)");
+        $stmt->bind_param("ss", $userName, $reviewText);
+        $stmt->execute();
+    }
+
+    public function getReviews() {
+        require __DIR__ . '/../database/connection.php';
+        $result = $connection->query("SELECT * FROM reviews");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
     
 }
 

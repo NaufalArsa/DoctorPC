@@ -21,6 +21,17 @@ class Controller {
         $dataReq = $this->model->showrequest();
         include("../resources/views/service-request.php");
     }
+
+
+    // FITUR REVIEW [ALAM]
+    public function addReview($userName, $reviewText) {
+        $this->model->addReview($userName, $reviewText);
+        header("Location: ../resources/views/review-users.php");
+    }
+
+    public function displayReviews() {
+        return $this->model->getReviews();
+    }
 }
 
 ?>
