@@ -20,4 +20,6 @@ ALTER TABLE serviceit.mechanic ADD ID_SPECIALIST smallint(6);
 ALTER TABLE serviceit.mechanic
     ADD FOREIGN KEY (ID_SPECIALIST) REFERENCES serviceit.specialist (ID_SPECIALIST);
 
+-- ADD KOLOM NOTE (buat bedakan yg udah jadi mekanik sama yg masih applicant)
+ALTER TABLE serviceit.mechanic ADD NOTE varchar(255);
 
