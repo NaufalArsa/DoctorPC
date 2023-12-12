@@ -15,6 +15,9 @@ if($_SESSION['login'] = false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Style Review Users -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="dashboard-review-style.css">
     <title>Document</title>
 </head>
 <body class="max-h-max">
@@ -286,23 +289,59 @@ if($_SESSION['login'] = false) {
     <!-- <img src="https://icons8.com/illustrations/illustration/juicy-blue-quadrangular-star" alt=""> -->
     <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20"></div>
     <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+
     <div class="mx-auto max-w-2xl lg:max-w-4xl">
-      <img class="mx-auto h-12 scale-[3]" src="https://img.freepik.com/free-photo/3d-speech-bubbles-with-gold-rating-stars_107791-16206.jpg?w=826&t=st=1702024465~exp=1702025065~hmac=0b78022b94d4aa029ba2b3e496a7945bf8c8a4304db414e4e785fd20b79f9be6" alt="">
-      <figure class="mt-20">
-        <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-          <p>“Exceptional IT service! Their innovative solutions and prompt support transformed our operations, providing seamless technology integration. A reliable partner for navigating the complexities of the digital landscape.”</p>
-        </blockquote>
-        <figcaption class="mt-10">
-          <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg?w=740&t=st=1702024725~exp=1702025325~hmac=eea34c16b5cd07c6a30a40b8b43af2deb0554fa1b00070792fd0f276e99c6d4a" alt="">
-          <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-            <div class="font-semibold text-gray-900">Mirza Alam </div>
-          </div>
-        </figcaption>
-      </figure>
-      <a href="views/review-users.php" class="mt-10 flex items-center justify-center inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Send Feedback</a>
+        <img class="mx-auto h-12 scale-[3]" src="https://img.freepik.com/free-photo/3d-speech-bubbles-with-gold-rating-stars_107791-16206.jpg?w=826&t=st=1702024465~exp=1702025065~hmac=0b78022b94d4aa029ba2b3e496a7945bf8c8a4304db414e4e785fd20b79f9be6" alt="">
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <figure class="mt-20">
+                        <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+                            <p>“Exceptional IT service! Their innovative solutions and prompt support transformed our operations, providing seamless technology integration. A reliable partner for navigating the complexities of the digital landscape.”</p>
+                        </blockquote>
+                        <figcaption class="mt-10">
+                            <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg" alt="">
+                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                                <div class="font-semibold text-gray-900">Mirza Alam</div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <figure class="mt-20">
+                        <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+                            <p>“Exceptional IT service! Their innovative solutions and prompt support transformed our operations, providing seamless technology integration. A reliable partner for navigating the complexities of the digital landscape.”</p>
+                        </blockquote>
+                        <figcaption class="mt-10">
+                            <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg" alt="">
+                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                                <div class="font-semibold text-gray-900">Mirza Alam</div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+
+            </div>
+            <!-- Customized Pagination -->
+            <div class="swiper-pagination custom-pagination"></div>
+
+            <!-- Customized Navigation Buttons -->
+            <div class="swiper-button-prev custom-nav-button"></div>
+            <div class="swiper-button-next custom-nav-button"></div>
+        </div>
+
+        <!-- Send Feedback Button -->
+        <a href="views/review-users.php" class="mt-10 flex items-center justify-center inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Send Feedback</a>
     </div>
   </section>
-  <!-- ... -->
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<!-- ... -->
 
   <!-- Footer -->
 
@@ -335,7 +374,17 @@ if($_SESSION['login'] = false) {
 
 
 <script>
-  
+      const swiper = new Swiper('.mySwiper', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+      });
 </script>
 
 </body>
