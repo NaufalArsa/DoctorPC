@@ -24,12 +24,11 @@ class Controller {
 
 
     // FITUR REVIEW [ALAM]
-    public function addReview($userName, $reviewText) {
-        $this->model->addReview($userName, $reviewText);
-        header("Location: ../resources/views/review-users.php");
+    public function saveReview($name, $review) {
+        return $this->model->saveReview($name, $review);
     }
 
-    public function displayReviews() {
+    public function getReviews() {
         return $this->model->getReviews();
     }
 }
