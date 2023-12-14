@@ -2,7 +2,7 @@
 
 session_start();
 
-// include "../database/connection.php";
+//include "../database/connection.php";
 
 class Model {
     
@@ -26,8 +26,9 @@ class Model {
         require "../database/connection.php";
         $query;
     }
+
     public function showrequest(){
-        require "../database/connection.php";
+        require __DIR__ . '/../database/connection.php';
         $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
         // Fetch data and store it in $this->hasil
         while ($row = mysqli_fetch_assoc($query)) {
@@ -35,6 +36,19 @@ class Model {
         }
 
         return $this->hasil;
+    }
+
+    public function deleteService($serviceId) {
+        require __DIR__ . '/../database/connection.php';
+        $query = mysqli_query($connection, "DELETE FROM serviceit.service WHERE ID_SERVICE = '$serviceId'");
+        return $query;
+    }
+
+    public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic) {
+        require __DIR__ . '/../database/connection.php';
+        $stmt = $connection->prepare("INSERT INTO serviceit.service (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, STATUS_SERVICE, DESKRIPSI, ID_MECHANIC) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssi", $namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic);
+        $stmt->execute();
     }
 
     // FITUR REVIEW [ALAM]
