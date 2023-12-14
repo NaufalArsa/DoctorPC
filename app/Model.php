@@ -61,7 +61,7 @@ class Model {
         $stmt = $connection->prepare($query);
         $stmt->bind_param("ssss", $name, $contact, $specialist, $applicant);
         $stmt->execute();
-        $result = mysqli_query($connection, "SELECT ID_MECHANIC FROM SERVICEIT.MECHANIC WHERE KONTAK_MECHANIC = '$contact'");
+        $result = mysqli_query($connection, "SELECT ID_MECHANIC FROM SERVICEIT.MECHANIC WHERE KONTAK_MECHANIC = '$contact' ORDER BY ID_MECHANIC DESC LIMIT 1");
         $row = mysqli_fetch_assoc($result);
         return $row['ID_MECHANIC'];
     }

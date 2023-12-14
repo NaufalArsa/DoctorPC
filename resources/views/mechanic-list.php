@@ -14,7 +14,7 @@
 
 </head>
 <body class="overflow-x-hidden">
-
+<!--<button onclick="coba()">debug</button>-->
 <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
