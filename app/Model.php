@@ -32,16 +32,74 @@ class Model {
 
         return $this->hasil;
     }
-    
-    public function getDataSupply($name) {
-        require "../database/connection.php";
-        $query = mysqli_query($connection, "SELECT * FROM supply WHERE nama_supply = '$name'");
 
-        while($row = $query->fetch_assoc()) {
-            $hasil[] = $row;
+    public function showDataSupply() {
+        require "../database/connection.php";
+
+        $query = mysqli_query($connection, "SELECT * FROM supply");
+        
+        // $rows = array();
+
+        // while ($row = mysqli_fetch_assoc($query)) {
+        //     $rows[] = $row;
+        // }
+
+        return $this->hasil = mysqli_fetch_all($query);
+
+    }
+
+    public function getDataPreview($id) {
+        require "../../database/connection.php";
+        $result = mysqli_query($connection, "SELECT * FROM supply WHERE ID_BARANG = '$id'");
+        
+        $rows = array();
+
+        // $row = mysqli_fetch_assoc($result);
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
         }
 
-        return $this->hasil;
+        return $rows;
+    }
+    
+    public function getDataSupplyLaptop() {
+        require "../../database/connection.php";
+        $result = mysqli_query($connection, "SELECT * FROM supply WHERE ID_CATEGORY = 1");
+
+        $rows = array();
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function getDataSupplyDesktop() {
+        require "../../database/connection.php";
+        $result = mysqli_query($connection, "SELECT * FROM supply WHERE ID_CATEGORY = 2");
+
+        $rows = array();
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function getDataSupplyGadget() {
+        require "../../database/connection.php";
+        $result = mysqli_query($connection, "SELECT * FROM supply WHERE ID_CATEGORY = 3");
+
+        $rows = array();
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 }
 
