@@ -26,16 +26,17 @@ class Controller {
                     $serviceId = $_POST['serviceId'];
                     $this->deleteService($serviceId);
                     break;
-                case 'addRequest':
-                    $this->addRequest(
-                        $_POST['namaPelanggan'],
-                        $_POST['kontakPelanggan'],
-                        $_POST['merkDevice'],
-                        $_POST['statusService'],
-                        $_POST['deskripsi'],
-                        $_POST['idMechanic']
-                        );
-                    break;
+                    case 'addRequest':
+                        // Extract and validate form data, then call the method to add the request
+                        // Adjust the following lines based on your form field names
+                        $namaPelanggan = $_POST['namaPelanggan'];
+                        $kontakPelanggan = $_POST['kontakPelanggan'];
+                        $merkDevice = $_POST['merkDevice'];
+                        $statusService = $_POST['statusService'];
+                        $deskripsi = $_POST['deskripsi'];
+                        $idMechanic = $_POST['idMechanic'];
+                        $this->addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic);
+                        break;
             }
         }
     }
