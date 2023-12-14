@@ -10,14 +10,16 @@ $dataReq = $controller->showrequest();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Service Request</title>
 </head>
 
-<body>
+<body class="bg-gray-100">
 
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -146,90 +148,110 @@ $dataReq = $controller->showrequest();
         </div>
     </nav>
 
-    <div class="container">
-        <button type="button" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white" data-toggle="modal"
-            data-target="#addRequestModal">
-            Tambah Request
-        </button>
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" placeholder="Masukan Nama">
+    <div class="container mx-auto mt-8">
+        <button type="button" class="ml-2 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded-md"
+            id="addRequestBtn">Tambah Request</button>
+        <!-- Form to add a new service request -->
+        <div id="addRequestFormModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <span class="close-form absolute top-0 right-0 cursor-pointer p-4">&times;</span>
+                        <form id="addRequestForm">
+                            <div class="mb-4">
+                                <label for="namaPelanggan" class="block text-gray-700 text-sm font-bold mb-2">Nama
+                                    Pelanggan:</label>
+                                <input type="text" name="namaPelanggan" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="kontakPelanggan" class="block text-gray-700 text-sm font-bold mb-2">Kontak
+                                    Pelanggan:</label>
+                                <input type="text" name="kontakPelanggan" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="merkDevice" class="block text-gray-700 text-sm font-bold mb-2">Merk
+                                    Device:</label>
+                                <input type="text" name="merkDevice" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="statusService" class="block text-gray-700 text-sm font-bold mb-2">Status
+                                    Service:</label>
+                                <input type="text" name="statusService" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="deskripsi"
+                                    class="block text-gray-700 text-sm font-bold mb-2">Deskripsi:</label>
+                                <textarea name="deskripsi" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="idMechanic" class="block text-gray-700 text-sm font-bold mb-2">ID
+                                    Mechanic:</label>
+                                <input type="text" name="idMechanic" required
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </div>
+
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Submit
+                                Request</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-default" id="searchBtn">Search</button>
+        </div>
+        <form class="flex items-center mb-4">
+            <div class="flex-shrink-0">
+                <input type="text"
+                    class="border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 rounded-md py-2 px-4"
+                    id="search" placeholder="Masukan Nama">
+            </div>
+            <button type="button" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
+                id="searchBtn">Search</button>
         </form>
-        <table class="table table-bordered table-hover">
+        <table class="min-w-full bg-white border border-gray-300 mx-auto">
             <thead>
                 <tr>
-                    <th>ID Service</th>
-                    <th>Nama Pelanggan</th>
-                    <th>Kontak Pelanggan</th>
-                    <th>Merk Device</th>
-                    <th>Status Device</th>
-                    <th>Deskripsi</th>
-                    <th>ID Mechanic</th>
-                    <th>Action</th>
+                    <th class="py-2 px-4 border-b">ID Service</th>
+                    <th class="py-2 px-4 border-b">Nama Pelanggan</th>
+                    <th class="py-2 px-4 border-b">Kontak Pelanggan</th>
+                    <th class="py-2 px-4 border-b">Merk Device</th>
+                    <th class="py-2 px-4 border-b">Status Device</th>
+                    <th class="py-2 px-4 border-b">Deskripsi</th>
+                    <th class="py-2 px-4 border-b">ID Mechanic</th>
+                    <th class="py-2 px-4 border-b">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    foreach ($dataReq as $row) {
-                        echo "<tr>";
-                        echo "<td>{$row['ID_SERVICE']}</td>";
-                        echo "<td>{$row['NAMA_PELANGGAN']}</td>";
-                        echo "<td>{$row['KONTAK_PELANGGAN']}</td>";
-                        echo "<td>{$row['MERK_DEVICE']}</td>";
-                        echo "<td>{$row['STATUS_SERVICE']}</td>";
-                        echo "<td>{$row['DESKRIPSI']}</td>";
-                        echo "<td>{$row['ID_MECHANIC']}</td>";
-                        echo "<td><button class='btn btn-danger btn-sm' onclick='deleteService({$row['ID_SERVICE']})'>Delete</button></td>";
-                        echo "</tr>";
-                    }
-                ?>
+        foreach ($dataReq as $row) {
+            echo "<tr>";
+            echo "<td class='py-2 px-4 border-b'>{$row['ID_SERVICE']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['NAMA_PELANGGAN']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['KONTAK_PELANGGAN']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['MERK_DEVICE']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['STATUS_SERVICE']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['DESKRIPSI']}</td>";
+            echo "<td class='py-2 px-4 border-b'>{$row['ID_MECHANIC']}</td>";
+            echo "<td class='py-2 px-4 border-b'><button class='bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded-md text-sm' onclick='deleteService({$row['ID_SERVICE']})'>Delete</button></td>";
+            echo "</tr>";
+        }
+        ?>
             </tbody>
         </table>
-    </div>
-    <div class="modal fade" id="addRequestModal" tabindex="-1" role="dialog" aria-labelledby="addRequestModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form tambah request -->
-                    <form id="addRequestForm">
-                        <div class="form-group">
-                            <label for="namaPelanggan">Nama Pelanggan:</label>
-                            <input type="text" class="form-control" id="namaPelanggan" name="namaPelanggan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="kontakPelanggan">Kontak Pelanggan:</label>
-                            <input type="text" class="form-control" id="kontakPelanggan" name="kontakPelanggan"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="merkDevice">Merk Device:</label>
-                            <input type="text" class="form-control" id="merkDevice" name="merkDevice" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="statusService">Status Service:</label>
-                            <input type="text" class="form-control" id="statusService" name="statusService" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="deskripsi">Deskripsi:</label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="idMechanic">ID Mechanic:</label>
-                            <input type="text" class="form-control" id="idMechanic" name="idMechanic" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white">Tambah Request</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
     <script>
     $(document).ready(function() {
@@ -247,32 +269,32 @@ $dataReq = $controller->showrequest();
                 }
             });
         });
+        $("#addRequestBtn").click(function() {
+            $("#addRequestFormModal").show();
+        });
+
+        // Close the form modal when the close button is clicked
+        $(".close-form").click(function() {
+            $("#addRequestFormModal").hide();
+        });
+
+        // Handle form submission using AJAX
         $("#addRequestForm").submit(function(event) {
             event.preventDefault();
+            var formData = $(this).serialize();
 
-            // Mengambil data dari form
-            var formData = {
-                action: 'addRequest',
-                namaPelanggan: $("#namaPelanggan").val(),
-                kontakPelanggan: $("#kontakPelanggan").val(),
-                merkDevice: $("#merkDevice").val(),
-                statusService: $("#statusService").val(),
-                deskripsi: $("#deskripsi").val(),
-                idMechanic: $("#idMechanic").val()
-            };
-
-            // Melakukan AJAX request
             $.ajax({
                 type: 'POST',
-                url: '../../app/Controller.php',
-                data: formData,
+                url: '../../app/Controller.php', // Replace with the actual path to your controller
+                data: formData +
+                    '&action=addRequest', // Include the action for adding a request
                 success: function(response) {
-                    // Reload halaman atau perbarui tabel setelah berhasil
+                    // Reload the page or update the table as needed
                     location.reload();
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
-                    alert('An error occurred while adding the request.');
+                    alert('An error occurred while adding the service request.');
                 }
             });
         });
