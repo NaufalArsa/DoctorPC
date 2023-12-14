@@ -5,24 +5,15 @@ include ("../app/Controller.php");
 $controller = new Controller();
 
 if (isset($_GET['login'])) {
-$username = htmlspecialchars($_POST['username']);
-$password = htmlspecialchars($_POST['password']);
 
-session_start();
-$_SESSION['name'] = $username;
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
-
-$controller->authenticationLogin($username, $password);
-
-}
-
-if(isset($_GET['show'])) {
-    $name = $_GET['supplyName'];
-    
     session_start();
-    $session['supplyName'] = $name;
+    $_SESSION['name'] = $username;
 
-    $controller->getDataSupply($name);
+    $controller->authenticationLogin($username, $password);
+
 }
 
 ?>

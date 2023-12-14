@@ -206,7 +206,7 @@ if($_SESSION['login'] = false) {
               <div class="place-self-center sm:max-w-lg">
                 <h1 class="text-4xl font-bold tracking-tight leading-loose text-gray-900 sm:text-6xl">Supply for your PC Desktop</h1>
                 <p class="mt-10 text-xl text-gray-500">We also offer a range of supplies designed to meet your essential PC needs, assisting you in maintaining and optimizing your computer.</p>
-                <a href="#" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Find your supply</a>
+                <a href="views/supply-list.php" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Find your supply</a>
               </div>
           </div>
         </div>
