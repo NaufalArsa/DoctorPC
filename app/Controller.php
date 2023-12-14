@@ -7,6 +7,8 @@ include ("Model.php");
 class Controller {
 
     public $model;
+    // public $data = array();
+
 
     public function __construct() {
         $this->model = new Model();
@@ -22,9 +24,25 @@ class Controller {
         include("../resources/views/service-request.php");
     }
 
-    public function getDataSupply($name) {
-        $data = $this->model->getDataSupply($name);
+    public function showDataSupply() {
+        $data = $this->model->showDataSupply();
         include("../resources/views/supply-list.php");
+    }   
+
+    public function getDataSupplyLaptop() {
+        return $this->model->getDataSupplyLaptop();
+    }
+
+    public function getDataSupplyDesktop() {
+        return $this->model->getDataSupplyDesktop();
+    }
+
+    public function getDataSupplyGadget() {
+        return $this->model->getDataSupplyGadget();
+    }
+
+    public function getDataPreview($id) {
+        return $this->model->getDataPreview($id);
     }
 
 
