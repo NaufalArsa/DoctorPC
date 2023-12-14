@@ -17,6 +17,25 @@ $dataReq = $controller->showrequest();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Service Request</title>
+    <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        /* Set the body to at least the full height of the viewport */
+    }
+
+    main {
+        flex: 1;
+        /* Allow the main content to grow and fill the available space */
+    }
+
+    footer {
+        shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        width: 100%;
+    }
+    </style>
 </head>
 
 <body class="bg-gray-100">
@@ -149,7 +168,7 @@ $dataReq = $controller->showrequest();
     </nav>
 
     <div class="container mx-auto mt-8">
-        <button type="button" class="ml-2 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded-md"
+        <button type="button" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             id="addRequestBtn">Tambah Request</button>
         <!-- Form to add a new service request -->
         <div id="addRequestFormModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
@@ -252,6 +271,7 @@ $dataReq = $controller->showrequest();
         ?>
             </tbody>
         </table>
+
     </div>
     <script>
     $(document).ready(function() {
@@ -322,6 +342,19 @@ $dataReq = $controller->showrequest();
     }
     </script>
 </body>
+<footer class="shadow max-auto px-8 bg-gray-800 mt-auto">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/"
+                class="hover:underline">Kelompok 2</a>. All Rights Reserved.</span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li><a href="#" class="hover:underline me-4 md:me-6">Naufal</a></li>
+            <li><a href="#" class="hover:underline me-4 md:me-6">Ryan</a></li>
+            <li><a href="#" class="hover:underline me-4 md:me-6">Arvin</a></li>
+            <li><a href="#" class="hover:underline me-4 md:me-6">Hali</a></li>
+            <li><a href="#" class="hover:underline">Alam</a></li>
+        </ul>
+    </div>
+</footer>
 
 </html>
 
