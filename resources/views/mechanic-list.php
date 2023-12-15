@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mechanic Application</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body class="overflow-x-hidden">
-<!--<button onclick="coba()">debug</button>-->
 <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
@@ -286,7 +284,7 @@
                 <form action="mechanic-apply.php" method="post">
                     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 sm:flex sm:items-start mt-2">
                         <div class="mt-3 text-center sm:mt-0 w-full">
-                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Pelase enter your contact & ID</h3>
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Please enter your contact & ID</h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500">To verify that it's really you, please enter your phone number & Application ID</p>
                             </div>
@@ -434,27 +432,24 @@
 
 <script>
 
-    document.querySelector("#edit").addEventListener("click", function (event) {
-        event.preventDefault();
-    });
-    document.querySelector("#delete").addEventListener("click", function (event) {
-        event.preventDefault();
+
+    $(document).ready(function() {
+        $("#edit").click(function(event) {
+            event.preventDefault();
+        });
+
+        $("#delete").click(function(event) {
+            event.preventDefault();
+        });
+
     });
 
-    var fname = document.querySelector("#first-name");
-    var lname = document.querySelector("#last-name");
-    var contact = document.querySelector("#contact");
-    var confirmation = document.querySelector("#confirmation");
-    var verification = document.querySelector("#verification");
-    var editConfirmation = document.querySelector("#editConfirmation");
-    var deleteConfirmation = document.querySelector("#deleteConfirmation");
-    var deleted = document.querySelector("#deleted");
 
     var id = <?php echo $GLOBALS['id'] ?>;
     var act = "<?php echo $GLOBALS['act'] ?>";
 
     if (id > 0) {
-        confirmation.classList.remove("invisible");
+        $("#confirmation").removeClass("invisible");
     }
 
     if (act === "search") {
@@ -469,28 +464,27 @@
             for (let i = 1; i < arrName.length; i++) {
                 lastname += arrName[i] + " ";
             }
-            document.querySelector("#applyButton").classList.add("hidden");
-            document.querySelector("#editButton").classList.remove("hidden");
-            fname.value = firstname;
-            lname.value = lastname;
-            contact.value = kontak;
-            document.querySelector("#position").value = position;
-            document.querySelector("#action").value = "edit";
-            document.querySelector("#currentID").value = idData;
-            fname.focus();
+            $("#applyButton").addClass("hidden");
+            $("#editButton").removeClass("hidden");
+            $("#first-name").val(firstname).focus();
+            $("#last-name").val(lastname);
+            $("#contact").val(kontak);
+            $("#position").val(position);
+            $("#action").val("edit");
+            $("#currentID").val(idData);
         } else {
-            verification.classList.remove("invisible");
-            document.querySelector("#notFound").classList.remove("invisible");
+            $("#verification").removeClass("invisible");
+            $("#notFound").removeClass("invisible");
         }
 
     }
 
     if (act === "edit") {
-        editConfirmation.classList.remove("invisible");
+        $("#editConfirmation").removeClass("invisible");
     }
 
     if (act === "delete") {
-        deleted.classList.remove("invisible");
+        $("#deleted").removeClass("invisible");
     }
 
     function coba() {
@@ -499,49 +493,48 @@
 
     function toggleConfirmation() {
         id = 0;
-        confirmation.classList.add("invisible");
-        <?php
-        unset($_POST);
-        ?>
+        $("#confirmation").addClass("invisible");
+        <?php unset($_POST); ?>
     }
 
     function cancelVerification() {
-        verification.classList.add("invisible");
-        document.querySelector("#contactVerif").value = '';
-        document.querySelector("#idVerif").value = '';
+        $("#verification").addClass("invisible");
+        $("#contactVerif").val('');
+        $("#idVerif").val('');
     }
 
     function toggleEditConfirmation() {
-        editConfirmation.classList.add("invisible");
+        $("#editConfirmation").addClass("invisible");
     }
+
     function toggleVerification() {
-        document.querySelector("#notFound").classList.add("invisible");
-        if (verification.classList.contains("invisible")) {
-            verification.classList.remove("invisible");
+        $("#notFound").addClass("invisible");
+        if ($("#verification").hasClass("invisible")) {
+            $("#verification").removeClass("invisible");
         } else {
             location.reload();
         }
     }
 
     function toggleDelete() {
-        if (deleteConfirmation.classList.contains("invisible")) {
-            deleteConfirmation.classList.remove("invisible");
-            document.querySelector("#action").value = "delete";
+        if ($("#deleteConfirmation").hasClass("invisible")) {
+            $("#deleteConfirmation").removeClass("invisible");
+            $("#action").val("delete");
         } else {
-            deleteConfirmation.classList.add("invisible");
-            document.querySelector("#action").value = "edit";
+            $("#deleteConfirmation").addClass("invisible");
+            $("#action").val("edit");
         }
     }
 
     function acceptDelete() {
-        document.querySelector("form").submit();
+        $("#form").submit();
     }
 
     function toggleDeleted() {
-        if (deleted.classList.contains("invisible")) {
-            deleted.classList.remove("invisible");
+        if ($("#deleted").hasClass("invisible")) {
+            $("#deleted").removeClass("invisible");
         } else {
-            deleted.classList.add("invisible");
+            $("#deleted").addClass("invisible");
         }
     }
 
