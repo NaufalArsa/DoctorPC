@@ -1,14 +1,10 @@
 <?php
 
-// session_start();
-
 include ("Model.php");
 
 class Controller {
 
     public $model;
-    // public $data = array();
-
 
     public function __construct() {
         $this->model = new Model();
@@ -24,9 +20,8 @@ class Controller {
         include("../resources/views/service-request.php");
     }
 
-    public function showDataSupply() {
-        $data = $this->model->showDataSupply();
-        include("../resources/views/supply-list.php");
+    public function getDataSupply() {
+        return $this->model->getDataSupply();
     }   
 
     public function getDataSupplyLaptop() {
@@ -52,6 +47,14 @@ class Controller {
     public function displaySupplyPage() {
         include("supply-list.php");
     }
+
+    public function updateData($id, $stock) {
+        $this->model->updateData($id, $stock);
+    }   
+
+    public function deleteData($id) {
+        $this->model->deleteData($id);
+    }   
 
 }
 
