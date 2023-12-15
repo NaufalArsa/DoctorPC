@@ -45,6 +45,13 @@ class Controller {
         return $this->model->getDataPreview($id);
     }
 
+    public function addData($name, $price, $stock, $idcategory, $image) {
+        $this->model->addData($name, $price, $stock, $idcategory, $image);
+    }
+
+    public function displaySupplyPage() {
+        include("supply-list.php");
+    }
 
 }
 
