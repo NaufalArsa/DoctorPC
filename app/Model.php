@@ -2,12 +2,8 @@
 
 session_start();
 
-// include "../database/connection.php";
-
 class Model {
     
-    public $hasil = array();
-
     public function authenticationLogin($username, $password) {
         require "../database/connection.php";
         $query = mysqli_query($connection, "SELECT * FROM user 
@@ -22,29 +18,18 @@ class Model {
         return $_SESSION['login'];
     }
 
-    public function showrequest(){
-        require "../database/connection.php";
-        $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
-        // Fetch data and store it in $this->hasil
-        while ($row = mysqli_fetch_assoc($query)) {
-            $this->hasil[] = $row;
+    public function getDataSupply() {
+        require "../../database/connection.php";
+
+        $result = mysqli_query($connection, "SELECT * FROM supply");
+
+        $rows = array();
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
         }
 
-        return $this->hasil;
-    }
-
-    public function showDataSupply() {
-        require "../database/connection.php";
-
-        $query = mysqli_query($connection, "SELECT * FROM supply");
-        
-        // $rows = array();
-
-        // while ($row = mysqli_fetch_assoc($query)) {
-        //     $rows[] = $row;
-        // }
-
-        return $this->hasil = mysqli_fetch_all($query);
+        return $rows;
 
     }
 
@@ -53,8 +38,6 @@ class Model {
         $result = mysqli_query($connection, "SELECT * FROM supply WHERE ID_BARANG = '$id'");
         
         $rows = array();
-
-        // $row = mysqli_fetch_assoc($result);
 
         while($row = mysqli_fetch_assoc($result)) {
             $rows[] = $row;
@@ -110,7 +93,25 @@ class Model {
 
         return $query;
     }
-}
 
+    public function updateData($id, $stock) {
+        require "../../database/connection.php";
+
+        $query = mysqli_query($connection, "UPDATE supply 
+                                            SET STOK_SUPPLY = STOK_SUPPLY-'$stock' 
+                                            WHERE ID_BARANG = '$id'");
+
+        return $query;
+    }
+
+    public function deleteData($id) {
+        require "../../database/connection.php";
+
+        $query = mysqli_query($connection, "DELETE FROM supply 
+                                            WHERE ID_BARANG = '$id'");
+
+        return $query;
+    }
+}
 
 ?>
