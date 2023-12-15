@@ -101,6 +101,15 @@ class Model {
 
         return $rows;
     }
+
+    public function addData($name, $price, $stock, $idcategory, $image) {
+        require "../../database/connection.php";
+
+        $query = mysqli_query($connection, "INSERT INTO supply (NAMA_SUPPLY, STOK_SUPPLY, HARGA_SUPPLY, ID_CATEGORY, GAMBAR_SUPPLY) 
+                                    VALUES ('$name', '$stock', '$price', '$idcategory', '$image')");
+
+        return $query;
+    }
 }
 
 
