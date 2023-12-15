@@ -241,3 +241,10 @@ BEGIN
     SELECT * FROM SERVICEIT.SERVICE;
 END //
 DELIMITER ;
+
+INSERT INTO SERVICEIT.SERVICE (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, DESKRIPSI) VALUES
+('Eva Rodriguez', '+62 822-5555-6666', 'Laptop ASUS ROG', 'Charging problem'),
+('Ahmad Malik', '+62 877-9876-5432', 'Printer EPSON', 'Focus calibration'),
+('Sophie Chen', '+62 888-1111-2222', 'Laptop HP', 'No sound issue'),
+('Muhammad Ali', '+62 899-3333-4444', 'Laptop Acer', 'Display glitch'),
+('Aisha Gupta', '+62 811-7777-8888', 'Macbook Air M1', 'Connection stability');
