@@ -37,17 +37,11 @@ class Model {
 
         return $this->hasil;
     }
-    public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic) {
+    public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi) {
         require __DIR__ . '/../database/connection.php';
-        $stmt = $connection->prepare("INSERT INTO serviceit.service (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, STATUS_SERVICE, DESKRIPSI, ID_MECHANIC) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssi", $namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic);
+        $stmt = $connection->prepare("INSERT INTO SERVICEIT.SERVICE (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, DESKRIPSI) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi);
         $stmt->execute();
-    }
-
-    public function deleteService($serviceId) {
-        require __DIR__ . '/../database/connection.php';
-        $query = mysqli_query($connection, "DELETE FROM serviceit.service WHERE ID_SERVICE = '$serviceId'");
-        return $query;
     }
 
     // FITUR REVIEW [ALAM]
