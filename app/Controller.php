@@ -17,52 +17,14 @@ class Controller {
         header("location: ../resources/dashboard.php");
     }
 
-    public function handleRequest() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $action = $_POST['action'];
-
-            switch ($action) {
-                case 'deleteService':
-                    $serviceId = $_POST['serviceId'];
-                    $this->deleteService($serviceId);
-                    break;
-                    case 'addRequest':
-                        // Extract and validate form data, then call the method to add the request
-                        // Adjust the following lines based on your form field names
-                        $namaPelanggan = $_POST['namaPelanggan'];
-                        $kontakPelanggan = $_POST['kontakPelanggan'];
-                        $merkDevice = $_POST['merkDevice'];
-                        $statusService = $_POST['statusService'];
-                        $deskripsi = $_POST['deskripsi'];
-                        $idMechanic = $_POST['idMechanic'];
-                        $this->addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic);
-                        break;
-            }
-        }
-    }
-
     public function showrequest(){
         return $this->model->showrequest();
     }
 
-    public function deleteService($serviceId) {
-        $result = $this->model->deleteService($serviceId);
-        if ($result) {
-            // Redirect atau sesuaikan dengan kebutuhan setelah penghapusan berhasil
-            header("Location: ../resources/views/service-request.php");
-        } else {
-            // Handle jika penghapusan gagal
-            echo "Error deleting service.";
-        }
-    }
-
-    public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic) {
-        $this->model->addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $statusService, $deskripsi, $idMechanic);
-        // Redirect atau sesuaikan dengan kebutuhan setelah penambahan berhasil
-        header("Location: ../resources/views/service-request.php");
+    public function addrequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi){
+        $this->model->addrequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi);
     }
     
-
     // FITUR REVIEW [ALAM]
     public function addReview($userName, $reviewText) {
         $this->model->addReview($userName, $reviewText);
