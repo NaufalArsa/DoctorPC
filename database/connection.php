@@ -2,11 +2,10 @@
 
 $server = "localhost";
 $username = "root";
-$password = "SMAN1.malang";
+$password = "";
 $database = "serviceit";
 
-//$connection = mysqli_connect($server, $username, $password, $database);
-$connection = mysqli_connect($server, $username, $password, $database, 3307);
+$connection = mysqli_connect($server, $username, $password, $database);
 
 if (mysqli_connect_errno()) {
     echo "Koneksi database gagal : " . mysqli_connect_error();
