@@ -4,12 +4,33 @@ include_once "../../app/Controller.php";
 
 $controller = new Controller();
 
+if(isset($_GET['add'])) {
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $stock = $_POST['stock'];
+    $category = $_POST['category'];
+    $image = $_POST['image'];
+
+    if($category == "Laptop") {
+        $idcategory = 1;
+    } else if($category == "Desktop") {
+        $idcategory = 2;
+    } else {
+        $idcategory = 3;
+    }
+    
+    $controller->addData($name, $price, $stock, $idcategory, $image);
+    header("Location: supply-list.php");
+
+} else 
+
 $dataCatLaptop = $controller->getDataSupplyLaptop();
 $dataCatDesktop = $controller->getDataSupplyDesktop();
 $dataCatGadget = $controller->getDataSupplyGadget();
+    // $controller->displaySupplyPage();
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,38 +59,64 @@ $dataCatGadget = $controller->getDataSupplyGadget();
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-12">
 
-                <h2 class="text-2xl font-bold text-gray-900">Collections</h2>
+                <div class="flex justify-between px-8">
+                    <h2 class="text-2xl font-bold text-gray-900">Our Collections</h2>
+                    <a data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="p-2 rounded-lg border border-black border-2 hover:bg-black hover:text-white hover:shadow-lg" id="sellOption" href="#sellItem">Want to sell your item?</a>
+                </div>
 
                 <!-- Banner -->
-                <div class="mt-6 rounded-lg relative isolate flex justify-center items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5">
-                        <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
-                            <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+
+                <div class="">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-6">
+
+                    <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+                        <div class="group relative">
+                        <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                            <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="h-full w-full object-cover object-center">
                         </div>
-                        <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
-                            <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+                        <h3 class="mt-6 text-sm text-gray-500">
+                            <a id="laptopTrigger" href="#showLaptop">
+                            <span class="absolute inset-0"></span>
+                            Laptop
+                            </a>
+                        </h3>
+                        <p class="text-base font-semibold text-gray-900">Laptop accessories to help your flexibility</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-x-56 gap-y-2">
-                            <!-- <form action="../../config/index.php?showLaptop" method="POST">
-                                <input type="submit" value="Laptop" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
-                            </form> -->
-                            <a id="laptopTrigger" href="#showLaptop" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Laptop</a>
-                            <a id="desktopTrigger" href="#showDesktop" class="flex-none rounded-full bg-indigo-600 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Desktop</a>
-                            <a id="gadgetTrigger" href="#showGadget" class="flex-none rounded-full bg-slate-500 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Gadget</a>
+                        <div class="group relative">
+                        <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                            <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center">
                         </div>
-                        <!-- <div class="flex flex-1 justify-end">
-                            <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
-                            <span class="sr-only">Dismiss</span>
-                            <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-                            </svg>
-                            </button>
-                        </div> -->
+                        <h3 class="mt-6 text-sm text-gray-500">
+                            <a id="desktopTrigger" href="#showDesktop">
+                            <span class="absolute inset-0"></span>
+                            PC Desktop
+                            </a>
+                        </h3>
+                        <p class="text-base font-semibold text-gray-900">Journals and note-taking</p>
+                        </div>
+                        <div class="group relative">
+                        <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                            <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg" alt="Collection of four insulated travel bottles on wooden shelf." class="h-full w-full object-cover object-center">
+                        </div>
+                        <h3 class="mt-6 text-sm text-gray-500">
+                            <a id="gadgetTrigger" href="#showGadget">
+                            <span class="absolute inset-0"></span>
+                            Travel
+                            </a>
+                        </h3>
+                        <p class="text-base font-semibold text-gray-900">Daily commute essentials</p>
+                        </div>
+                    </div>
+                    </div>
                 </div>
+                </div>
+
                 <!-- ... -->
 
 
 
-                <div class="mt-6 grid grid-cols-3 gap-y-6 gap-x-6 space-y-0">
+                <div class="mt-6 grid grid-cols-3 gap-y-6 gap-x-6 space-y-0 px-8">
         
                     
                     <?php 
@@ -238,6 +285,9 @@ $dataCatGadget = $controller->getDataSupplyGadget();
                                 </form> -->
                                 <a href="buy-supply.php?act=showPreview&id=<?= $row["ID_BARANG"]; ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     Show preview
+                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -260,9 +310,74 @@ $dataCatGadget = $controller->getDataSupplyGadget();
 
     <!-- ... -->
 
-    <!-- Product Quickviews -->
-       
-    <!--  -->
+    <!-- Sell Modal -->
+
+    <!-- Main modal -->
+    <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-lg font-semibold text-gray-900">
+                        Sell Item
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form action="?add" method="POST" class="p-4 md:p-5">
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type product name" required>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                            <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="$2999" required>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+                            <input type="number" name="stock" id="stock" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="$2999" required>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
+                            <select name="category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                                <option selected="">Select category</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Desktop">PC Desktop</option>
+                                <option value="Gadget">Gadget</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Product image</label>
+                            <textarea name="image" id="image" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write product description here" required></textarea>                    
+                        </div>
+                    </div>
+                    <button id="sellButton" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                        Sell product
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Alert -->
+    <div id="sellAlert" class="hidden flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div class="ms-3 text-sm font-medium">
+            A simple info alert. Give it a click if you like.
+        </div>
+    </div>
+    <!-- ... -->
 
     <script>
     // const laptopTrigger = document.getElementById('laptopHref');
@@ -273,21 +388,42 @@ $dataCatGadget = $controller->getDataSupplyGadget();
     // const laptopQuickview = document.getElementById('laptopQuickview');
     // const closeButton = document.getElementById('closeButton');
     // const supplyButton = document.getElementById('supplyButton');
-    // const supplyForm = document.getElementById('supplyForm');
-    // const supplyData = document.getElementsByClassName('supplyData');
+    const sellButton = document.getElementById('sellButton');
+    const supplyData = document.getElementsByClassName('supplyData');
 
-    // supplyButton.onclick = function() {
-    //     supplyForm.style.display = "block";
-    //     supplyData.style.display = "block";
+    // sellButton.onclick = function() {
+    //     setTimeout(function () {
+    //         window.location.href = 'supply-list.php#showLaptop'; // Replace with your target page URL
+    //     }, 1000); // Adjust the delay as needed
     // }
 
-    // supplyData.onclick = function() {
-    //     supplyData.style.display = "none";
+    // function submitForm(event) {
+    //     // Prevent the default form submission behavior
+    //     event.preventDefault();
+
+    //     // Redirect to another page after a short delay (e.g., 1000 milliseconds)
+    //     setTimeout(function () {
+    //         window.location.href = 'supply-list.php'; // Replace with your target page URL
+    //     }, 1000); // Adjust the delay as needed
     // }
 
+    
+
+    // // Optional: You can add a function to refresh the page without submitting the form
+    // // function refresh() {
+    // //     window.location.reload();
+    // // }
+
+    // function refresh() {    
+    //     // setTimeout(function () {
+    //     // }, 1000);    
+    //     window.location.replace(window.location.supply-list.php);
+    // }
+
+    // Jquery Function
     $("#laptopTrigger").click(function(){
         $("dataLaptop").show();
-        $("dataDesktop").hide();
+        $("dataDesktop").hide();    
         $("dataGadget").hide();
     });
 
@@ -302,6 +438,54 @@ $dataCatGadget = $controller->getDataSupplyGadget();
         $("dataGadget").show();
         $("dataDesktop").hide();
     });
+
+    // $("#sellButton").click(function(){
+    //     setsetTimeout(function(){
+    //         // location.reload();
+    //         $("#sellAlert").show();
+
+    //     }, 3000);
+
+    //     setTimeout(function(){
+    //         location.reload();
+    //     }, 3000)
+        
+    // });
+
+    //Alert JavaScript Function 
+
+    // import { Dismiss } from 'flowbite';
+
+    // const $targetEl = document.getElementById('targetElement');
+
+    // // optional trigger element
+    // const $triggerEl = document.getElementById('closeSellButton');
+
+    // function hide() {
+    // // options object
+    // const options = {
+    // transition: 'transition-opacity',
+    // duration: 1000,
+    // timing: 'ease-out',
+
+    // // callback functions
+    // onHide: (context, targetEl) => {
+    //     console.log('element has been dismissed')
+    //     console.log(targetEl)
+    // }
+    // };
+
+    // // instance options object
+    // const instanceOptions = {
+    // id: 'targetElement',
+    // override: true
+    // };
+
+    // const dismiss = new Dismiss($targetEl, $triggerEl, options, instanceOptions);
+
+    // }
+    // // dismiss.hide();
+
 
     // $(document).ready(function() {
     //     $("#previewButton").click(function() {
