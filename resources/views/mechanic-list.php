@@ -476,7 +476,6 @@
             $("#verification").removeClass("invisible");
             $("#notFound").removeClass("invisible");
         }
-
     }
 
     if (act === "edit") {
