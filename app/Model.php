@@ -30,7 +30,6 @@ class Model {
     public function showrequest(){
         require __DIR__ . '/../database/connection.php';
         $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
-        // Fetch data and store it in $this->hasil
         while ($row = mysqli_fetch_assoc($query)) {
             $this->hasil[] = $row;
         }
