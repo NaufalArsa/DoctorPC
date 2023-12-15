@@ -17,7 +17,7 @@ if (isset($_GET['add'])) {
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -25,51 +25,65 @@ if (isset($_GET['add'])) {
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Service Request</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
 
-        main {
-            flex: 1;
-        }
+    h1 {
+        padding-top: 50px;
+        text-align: center;
+    }
 
-        footer {
-            background-color: #333;
-            /* Adjust the background color as needed */
-            color: #fff;
-            /* Adjust the text color as needed */
-            text-align: center;
-            padding: 1rem;
-        }
+    main {
+        flex: 1;
+    }
+
+    footer {
+        background-color: #333;
+        /* Adjust the background color as needed */
+        color: #fff;
+        /* Adjust the text color as needed */
+        text-align: center;
+        padding: 1rem;
+    }
     </style>
 </head>
 
 <body class="bg-gray-100">
-    
     <main class="container">
-    
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
+        </div>
+        </div>
+        <div class="text-center">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Have Problem With Your Device?</h1>
+            <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Let`s Get Service!</h2>
+        </div>
         <form class="form-inline" style="margin-top: 50px; margin-bottom: 5px;">
             <div class="form-group">
-                <input type="text" class="form-control" id="search" placeholder="Masukan Nama">
+                <input type="text" class="form-control" id="search" placeholder="Enter Name">
             </div>
             <button type="button" class="btn btn-default" id="searchBtn">Search</button>
         </form>
         <div style="max-height: 400px; overflow-y: auto;">
             <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>ID Service</th>
-                    <th>Nama Pelanggan</th>
-                    <th>Kontak Pelanggan</th>
-                    <th>Merk Device</th>
-                    <th>Deskripsi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+                <thead>
+                    <tr>
+                        <th>ID Service</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Kontak Pelanggan</th>
+                        <th>Merk Device</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                 foreach ($dataReq as $row) {
                     echo "<tr>";
                     echo "<td>{$row['ID_SERVICE']}</td>";
@@ -80,14 +94,16 @@ if (isset($_GET['add'])) {
                     echo "</tr>";
                 }
                 ?>
-            </tbody>
-        </table>
-            </div>
-        <button type="button" style="margin-left:90%;" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white" data-toggle="modal" data-target="#addRequestModal">
-            Tambah Request
+                </tbody>
+            </table>
+        </div>
+        <button type="button" style="margin-left:90%;" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white"
+            data-toggle="modal" data-target="#addRequestModal">
+            Get Request
         </button>
         </div>
-        <div class="modal fade" id="addRequestModal" tabindex="-1" role="dialog" aria-labelledby="addRequestModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addRequestModal" tabindex="-1" role="dialog" aria-labelledby="addRequestModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -99,44 +115,47 @@ if (isset($_GET['add'])) {
                         <!-- Form tambah request -->
                         <form id="addRequestForm" action="?add" method="POST">
                             <div class="form-group">
-                                <label for="namaPelanggan">Nama Pelanggan:</label>
-                                <input type="text" class="form-control" id="namaPelanggan" name="namaPelanggan" required>
+                                <label for="namaPelanggan">Nama:</label>
+                                <input type="text" class="form-control" id="namaPelanggan" name="namaPelanggan"
+                                    required>
                             </div>
                             <div class="form-group">
-                                <label for="kontakPelanggan">Kontak Pelanggan:</label>
-                                <input type="text" class="form-control" id="kontakPelanggan" name="kontakPelanggan" required>
+                                <label for="kontakPelanggan">Kontak:</label>
+                                <input type="text" class="form-control" id="kontakPelanggan" name="kontakPelanggan"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="merkDevice">Merk Device:</label>
                                 <input type="text" class="form-control" id="merkDevice" name="merkDevice" required>
                             </div>
                             <div class="form-group">
-                                <label for="deskripsi">Deskripsi:</label>
+                                <label for="deskripsi">Keluhan:</label>
                                 <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white">Tambah Request</button>
+                            <button type="submit"
+                                class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white">Tambah Request</button>
                         </form>
                     </div>
                 </div>
             </div>
     </main>
     <script>
-        $(document).ready(function() {
-            // Handle search button click event
-            $("#searchBtn").click(function() {
-                var searchText = $("#search").val().toLowerCase();
-                // Loop through each row in the table and hide/show based on the search text
-                $("tbody tr").each(function() {
-                    var rowText = $(this).text().toLowerCase();
-                    if (rowText.includes(searchText)) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
+    $(document).ready(function() {
+        // Handle search button click event
+        $("#searchBtn").click(function() {
+            var searchText = $("#search").val().toLowerCase();
+            // Loop through each row in the table and hide/show based on the search text
+            $("tbody tr").each(function() {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             });
         });
+    });
     </script>
 </body>
 <footer class="shadow max-auto px-8 bg-gray-800 mt-auto">
