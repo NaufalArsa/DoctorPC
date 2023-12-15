@@ -45,10 +45,7 @@ if (isset($_GET['add'])) {
     }
 
     footer {
-        background-color: #333;
-        /* Adjust the background color as needed */
-        color: #fff;
-        /* Adjust the text color as needed */
+
         text-align: center;
         padding: 1rem;
     }
