@@ -1,3 +1,30 @@
+<?php
+session_start();
+include 'database/connection.php';
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = mysqli_real_escape_string($connection, $_POST['username']);
+    $password = mysqli_real_escape_string($connection, $_POST['password']);
+
+    $query = "SELECT ID_USER, USERNAME FROM USER WHERE USERNAME='$username' AND PASSWORD='$password'";
+    $result = mysqli_query($connection, $query);
+
+    if (mysqli_num_rows($result) == 1) {
+        $user = mysqli_fetch_assoc($result);
+
+        $_SESSION['username'] = $user['USERNAME'];
+        $_SESSION['user_id'] = $user['ID_USER'];
+        $_SESSION['password'] = $password;
+        $_SESSION['login'] = true;
+
+        header("Location: resources/dashboard.php");
+        exit();
+    } else {
+        echo "<script>alert('Username atau password salah!');</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +45,7 @@
                             <h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
                         </div>
                         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <form class="space-y-6" action="config/index.php?login" method="POST">
+                            <form class="space-y-6" action="login.php" method="POST">
                                 <div>
                                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                                     <div class="mt-2">

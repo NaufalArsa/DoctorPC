@@ -23,3 +23,9 @@ ALTER TABLE serviceit.mechanic
 -- ADD KOLOM NOTE (buat bedakan yg udah jadi mekanik sama yg masih applicant)
 ALTER TABLE serviceit.mechanic ADD NOTE varchar(255);
 
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    review TEXT,
+    FOREIGN KEY (user_id) REFERENCES USER(ID_USER)
+);
