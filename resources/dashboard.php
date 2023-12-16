@@ -28,7 +28,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         <div class="flex items-center">
           <div class="hidden md:block">
             <div class="ml-5 flex items-baseline space-x-4">
-              <a href="#" class="text-white rounded-md px-3 py-2 text-lg font-bold">SERVICE - IT</a>
+              <a href="logout.php" class="text-white rounded-md px-3 py-2 text-lg font-bold">SERVICE - IT</a>
               <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
@@ -47,16 +47,14 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
             </button> -->
             <h3 class="text-white block text-base font-medium">Hello, 
             <?php
-            
-            if(isset($_SESSION['name'])) {
-              $username = $_SESSION['name'];
+            if (isset($_SESSION['username'])) {
+              $username = $_SESSION['username'];
             } else {
               $username = "Guest";
             }
-          
             echo $username; ?></h3>
          
-            <a href="#"><i class="ml-5 h-8 w-8 grid place-self-center p-2 pl-2.5 hover:text-gray-800 hover:bg-white hover:rounded-full hover:duration-700 fa-regular fa-user text-white"></i></a>
+            <a href="views/editProfil.php"><i class="ml-5 h-8 w-8 grid place-self-center p-2 pl-2.5 hover:text-gray-800 hover:bg-white hover:rounded-full hover:duration-700 fa-regular fa-user text-white"></i></a>
             <!-- <img class="ml-5 h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
             <!-- Profile dropdown -->
             <!-- <div class="relative ml-3">
