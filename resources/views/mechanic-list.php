@@ -39,8 +39,8 @@
                     <h3 class="text-white block text-base font-medium">Hello,
                         <?php
 
-                        if(isset($_SESSION['name'])) {
-                            $username = $_SESSION['name'];
+                        if(isset($_SESSION['username'])) {
+                            $username = $_SESSION['username'];
                         } else {
                             $username = "Guest";
                         }
