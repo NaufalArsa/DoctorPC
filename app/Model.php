@@ -120,6 +120,7 @@ class Model {
         $stmt->execute();
     }
 
+    // FITUR SELL AND BUY SUPPLY [NAU]
     public function getDataSupply() {
         require "../../database/connection.php";
 
