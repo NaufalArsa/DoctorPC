@@ -26,7 +26,7 @@ class Model {
 
     // FITUR REQUEST [ARVIN]
     public function showrequest(){
-        require DIR . '/../database/connection.php';
+        require __DIR__ . "/../database/Connection.php";
         $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
         // Fetch data and store it in $this->hasil
         while ($row = mysqli_fetch_assoc($query)) {
@@ -36,7 +36,7 @@ class Model {
         return $this->hasil;
     }
     public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi) {
-        require DIR . '/../database/connection.php';
+        require __DIR__ . "/../database/Connection.php";
         $stmt = $connection->prepare("INSERT INTO SERVICEIT.SERVICE (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, DESKRIPSI) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi);
         $stmt->execute();
@@ -288,7 +288,6 @@ class Model {
             exit();
         }
     }
-}
 }
 
 
