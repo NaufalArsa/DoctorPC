@@ -224,7 +224,7 @@ if($_SESSION['login'] = false) {
     <div class="max-w-2xl">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our Mechanics</h2>
       <p class="mt-6 text-lg leading-8 text-gray-600">We provide you with our best mechanic so you dont have to worry. We can fix your problems!</p>
-      <a href="#" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Apply for Mechanic</a>
+      <a href="views/mechanic-apply.php" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Apply for Mechanic</a>
     </div>
     <ul role="list" class="ml-20 grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
       <li>

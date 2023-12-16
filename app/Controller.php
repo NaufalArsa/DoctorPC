@@ -39,6 +39,26 @@ class Controller {
         $userId = $_SESSION['user_id'];
         return $this->model->updateReview($reviewId, $userId, $newReview);
     }
+
+    public function displayMechanicPage() {
+        include("mechanic-list.php");
+    }
+
+    public function inputMechanic($fname, $lname, $contact, $specialist) {
+        return $this->model->addMechanic($fname, $lname, $contact, $specialist);
+    }
+
+    public function searchMechanic($contact, $id){
+        return $this->model->findMechianic($contact, $id);
+    }
+
+    public function modifyMechanic($fname, $lname, $contact, $specialist, $id) {
+        $this->model->editMechianic($fname, $lname, $contact, $specialist, $id);
+    }
+
+    public function removeMechanic($id) {
+        $this->model->deleteMechanic($id);
+    }
 }
 
 ?>
