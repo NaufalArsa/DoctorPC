@@ -60,11 +60,6 @@ class Controller {
         $this->model->deleteMechanic($id);
     }
 
-    public function showrequest(){
-        $dataReq = $this->model->showrequest();
-        include("../resources/views/service-request.php");
-    }
-
     public function getDataSupply() {
         return $this->model->getDataSupply();
     }   
