@@ -4,7 +4,6 @@ include_once "../../app/Controller.php";
 
 $controller = new Controller();
 
-
 if (isset($_GET['act']) && $_GET['act'] == 'showPreview') {
 
     $id = $_GET['id'];
