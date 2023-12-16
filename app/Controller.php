@@ -13,8 +13,11 @@ class Controller {
     }
 
     public function showrequest(){
-        $dataReq = $this->model->showrequest();
-        include("../resources/views/service-request.php");
+        return $this->model->showrequest();
+    }
+
+    public function addrequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi){
+        $this->model->addrequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi);
     }
 
     public function saveReview($review) {
