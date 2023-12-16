@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // include "../database/connection.php";
 
@@ -38,18 +40,46 @@ class Model {
     }
 
     // FITUR REVIEW [ALAM]
-    public function addReview($userName, $reviewText) {
-        require __DIR__ . '/../database/connection.php';
-        $stmt = $connection->prepare("INSERT INTO reviews (user_name, review_text) VALUES (?, ?)");
-        $stmt->bind_param("ss", $userName, $reviewText);
+    public function saveReview($review, $userId) {
+        require __DIR__ . "/../database/Connection.php";
+        $stmt = $connection->prepare("INSERT INTO reviews (review, user_id) VALUES (?, ?)");
+        $stmt->bind_param("si", $review, $userId);
         $stmt->execute();
+        return $stmt->insert_id;
     }
 
     public function getReviews() {
-        require __DIR__ . '/../database/connection.php';
-        $result = $connection->query("SELECT * FROM reviews");
+        require __DIR__ . "/../database/Connection.php";
+        $query = "SELECT reviews.review, user.USERNAME FROM reviews JOIN user ON reviews.user_id = user.ID_USER";
+        $result = $connection->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+    public function getReviewsByUserId($userId) {
+        require __DIR__ . "/../database/Connection.php";
+        $stmt = $connection->prepare("SELECT reviews.*, user.USERNAME FROM reviews JOIN user ON reviews.user_id = user.ID_USER WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function deleteReview($reviewId, $userId) {
+        require __DIR__ . "/../database/Connection.php";
+        $stmt = $connection->prepare("DELETE FROM reviews WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("ii", $reviewId, $userId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
+    public function updateReview($reviewId, $userId, $newReview) {
+        require __DIR__ . "/../database/Connection.php";
+        $stmt = $connection->prepare("UPDATE reviews SET review = ? WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("sii", $newReview, $reviewId, $userId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    } 
+
 
     // FITUR APPLY MECHANIC [HAL]
 

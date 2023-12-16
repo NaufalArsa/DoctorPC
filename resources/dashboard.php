@@ -1,11 +1,9 @@
-<?php 
-
+<?php
 session_start();
-
-if($_SESSION['login'] = false) {
-  header("location: ../login.php");
-} else 
-
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+    header("location: ../login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +16,7 @@ if($_SESSION['login'] = false) {
     <!-- Style Review Users -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="dashboard-review-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body class="max-h-max">
@@ -285,63 +284,55 @@ if($_SESSION['login'] = false) {
   <!-- ... -->
 
   <!-- Fitur Feedback Review -->
+  <!-- Reviews Display Section -->
   <section class="relative isolate overflow-hidden bg-white px-6 py-12 lg:px-8">
-    <!-- <img src="https://icons8.com/illustrations/illustration/juicy-blue-quadrangular-star" alt=""> -->
     <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20"></div>
     <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
 
     <div class="mx-auto max-w-2xl lg:max-w-4xl">
-        <img class="mx-auto h-12 scale-[3]" src="https://img.freepik.com/free-photo/3d-speech-bubbles-with-gold-rating-stars_107791-16206.jpg?w=826&t=st=1702024465~exp=1702025065~hmac=0b78022b94d4aa029ba2b3e496a7945bf8c8a4304db414e4e785fd20b79f9be6" alt="">
-        <!-- Swiper -->
+      <img class="mx-auto h-12 scale-[3]" src="https://img.freepik.com/free-photo/3d-speech-bubbles-with-gold-rating-stars_107791-16206.jpg?w=826&t=st=1702024465~exp=1702025065~hmac=0b78022b94d4aa029ba2b3e496a7945bf8c8a4304db414e4e785fd20b79f9be6" alt="">
+      <!-- Swiper -->
         <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <figure class="mt-20">
-                        <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                            <p>“Exceptional IT service! Their innovative solutions and prompt support transformed our operations, providing seamless technology integration. A reliable partner for navigating the complexities of the digital landscape.”</p>
-                        </blockquote>
-                        <figcaption class="mt-10">
-                            <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg" alt="">
-                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                                <div class="font-semibold text-gray-900">Mirza Alam</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <figure class="mt-20">
-                        <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                            <p>“Exceptional IT service! Their innovative solutions and prompt support transformed our operations, providing seamless technology integration. A reliable partner for navigating the complexities of the digital landscape.”</p>
-                        </blockquote>
-                        <figcaption class="mt-10">
-                            <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg" alt="">
-                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                                <div class="font-semibold text-gray-900">Mirza Alam</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-
+          <div class="swiper-wrapper">
+            <!-- PHP to Fetch and Display Reviews -->
+            <?php
+            include_once("../app/Controller.php");
+            $controller = new Controller();
+            $reviews = $controller->getReviews();
+            foreach ($reviews as $review) { ?>
+            <div class="swiper-slide">
+              <figure class="mt-20">
+                <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+                  <p>"<?= htmlspecialchars($review['review']) ?>"</p>
+                </blockquote>
+                <figcaption class="mt-10">
+                  <!-- Sementara menggunakan gambar default sampai ada sistem untuk gambar pengguna -->
+                  <img class="mx-auto h-10 w-10 rounded-full" src="https://img.freepik.com/free-photo/handsome-young-man-with-arms-crossed-white-background_23-2148222620.jpg" alt="">
+                  <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                    <div class="font-semibold text-gray-900"><?= htmlspecialchars($review['USERNAME']) ?></div>
+                  </div>
+                </figcaption>
+              </figure>
             </div>
-            <!-- Customized Pagination -->
-            <div class="swiper-pagination custom-pagination"></div>
-
-            <!-- Customized Navigation Buttons -->
-            <div class="swiper-button-prev custom-nav-button"></div>
-            <div class="swiper-button-next custom-nav-button"></div>
+            <?php } ?>
+          </div>
+          
+          <!-- Customized Pagination -->
+          <div class="swiper-pagination custom-pagination"></div>
+          
+          <!-- Customized Navigation Buttons -->
+          <div class="swiper-button-prev custom-nav-button"></div>
+          <div class="swiper-button-next custom-nav-button"></div>
         </div>
-
+        
         <!-- Send Feedback Button -->
         <a href="views/review-users.php" class="mt-10 flex items-center justify-center inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Send Feedback</a>
     </div>
   </section>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<!-- ... -->
+    
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <!-- ... -->
 
   <!-- Footer -->
 
