@@ -24,12 +24,9 @@ class Model {
         return $_SESSION['login'];
     }
 
-    public function showSupply() {
-        require "../database/connection.php";
-        $query;
-    }
+    // FITUR REQUEST [ARVIN]
     public function showrequest(){
-        require "../database/connection.php";
+        require DIR . '/../database/connection.php';
         $query = mysqli_query($connection, "SELECT * FROM serviceit.service");
         // Fetch data and store it in $this->hasil
         while ($row = mysqli_fetch_assoc($query)) {
@@ -38,6 +35,13 @@ class Model {
 
         return $this->hasil;
     }
+    public function addRequest($namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi) {
+        require DIR . '/../database/connection.php';
+        $stmt = $connection->prepare("INSERT INTO SERVICEIT.SERVICE (NAMA_PELANGGAN, KONTAK_PELANGGAN, MERK_DEVICE, DESKRIPSI) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $namaPelanggan, $kontakPelanggan, $merkDevice, $deskripsi);
+        $stmt->execute();
+    }
+
 
     // FITUR REVIEW [ALAM]
     public function saveReview($review, $userId) {
