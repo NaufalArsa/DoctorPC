@@ -220,6 +220,75 @@ class Model {
         return $query;
     }
     
+    // FITUR PROFILE [RYN]
+
+    public function checkPassword($username, $password)
+    {
+        global $connection;
+
+        if ($connection === null) {
+            die('Database connection is null. Check your connection.');
+        }
+
+        $stmt = $connection->prepare("SELECT * FROM user WHERE username = ? AND password = ?");
+        if (!$stmt) {
+            die('Prepare statement failed: ' . $connection->error);
+        }
+
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            die('Error during statement execution: ' . $stmt->error);
+        }
+
+        $stmt->store_result();
+        $validate = $stmt->num_rows;
+
+        $stmt->close();
+
+        return $validate > 0;
+    }
+
+    public function updateUsername($oldUsername, $newUsername)
+    {
+        global $connection;
+        $stmt = $connection->prepare("UPDATE user SET username = ? WHERE username = ?");
+        $stmt->bind_param("ss", $newUsername, $oldUsername);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            echo "Error: " . $stmt->error;
+            exit();
+        }
+    }
+
+    public function updateEmail($username, $newEmail)
+    {
+        global $connection;
+        $stmt = $connection->prepare("UPDATE user SET email = ? WHERE username = ?");
+        $stmt->bind_param("ss", $newEmail, $username);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            echo "Error: " . $stmt->error;
+            exit();
+        }
+    }
+
+    public function updatePassword($username, $newPassword)
+    {
+        global $connection;
+        $stmt = $connection->prepare("UPDATE user SET password = ? WHERE username = ?");
+        $stmt->bind_param("ss", $newPassword, $username);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            echo "Error: " . $stmt->error;
+            exit();
+        }
+    }
+}
 }
 
 
