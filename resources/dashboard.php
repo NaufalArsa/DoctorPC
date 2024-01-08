@@ -1,10 +1,10 @@
-<?php
-session_start();
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("location: ../login.php");
-    exit;
-}
-?>
+  <?php
+  session_start();
+  if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+      header("location: ../login.php");
+      exit;
+  }
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         <div class="flex items-center">
           <div class="hidden md:block">
             <div class="ml-5 flex items-baseline space-x-4">
-              <a href="logout.php" class="text-white rounded-md px-3 py-2 text-lg font-bold">SERVICE - IT</a>
+              <a href="logout.php" class="text-white rounded-md px-3 py-2 text-lg font-bold">DoctorPC</a>
               <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
@@ -135,7 +135,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
       </div>
       <div class="mx-auto max-w-2xl py-20 sm:py-48 lg:py-28">
         <div class="text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Leave Your IT Needs to Service-IT</h1>
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Leave Your IT Needs to DoctorPC</h1>
           <p class="mt-10 text-lg leading-8 text-gray-600">The innovative solution you have been looking for to fix any of your IT problems. No need to hesitate anymore, Trust us!</p>
           <div class="mt-14 flex items-center justify-center gap-x-6">
             <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Send Request for Service</a>
@@ -206,7 +206,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
               <div class="place-self-center sm:max-w-lg">
                 <h1 class="text-4xl font-bold tracking-tight leading-loose text-gray-900 sm:text-6xl">Supply for your PC Desktop</h1>
                 <p class="mt-10 text-xl text-gray-500">We also offer a range of supplies designed to meet your essential PC needs, assisting you in maintaining and optimizing your computer.</p>
-                <a href="#" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Find your supply</a>
+                <a href="views/supply-list.php" class="mt-10 inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Find your supply</a>
               </div>
           </div>
         </div>
